@@ -18,8 +18,9 @@ decisions.
 | 8 | Phase 4 | PM review of the agent's additions | ✅ PA-03, PA-09, PA-10 (and epic E4); ✅ OQ-1 default (list every source); ✅ OQ-2 default (hide answer when no approved source) | | | They cover scenario constraints that the team drafts didn't, and the defaults make PA-01 testable. |
 | 9 | Phase 5 | "Prepare gh commands" | ✅ PM approved the plan as written | | | Agent wrote `github-issue-plan.md` and `issue-drafts/`, and ran nothing before approval. |
 | 10 | Phase 5 | Run the approved plan | ✅ Duplicate check passed; 6 labels and issues #1–#10 created | | | Verified with `gh issue list`: 10/10 titles match the backlog, labels are correct, every issue has acceptance criteria, and there are no duplicates. |
-| 11 | Phase 5 | Add issues #1–#10 to the `User Stories Workshop` project and set Status, Work type, Story quality, and Risk area | — | — | — | **Done by the PM, not the agent.** The agent couldn't verify it: the token still lacks `read:project`, because the device-flow refresh hadn't completed. |
+| 11 | Phase 5 | Add issues #1–#10 to the `User Stories Workshop` project and set Status, Work type, Story quality, and Risk area | ✅ PM did the setup | | | **Done by the PM, not the agent.** It was verified later, in row 13. |
 | 12 | Phase 6 | Final AI Project Manager audit, then commit and push | ✅ PM requested | | | See the audit summary below. |
+| 13 | Phase 6 | Verify the project after the `project` scope was granted | | ✏️ PM chose option 1: fix the project to match the backlog | | Structure matched, but the hand-set values didn't: 9/10 stories were in the Ready column against the DoR, Story Quality was wrong on 9 items, and Risk Area was wrong on PA-09 and PA-10. After PM approval, the agent made 19 `gh project item-edit` changes. A re-check found 0 mismatches. |
 
 ## Agent Additions from Phase 4
 
@@ -46,12 +47,12 @@ The agent added these items that weren't in the team's drafts:
 
 | Check | Result | Evidence | Verified by |
 |---|---|---|---|
-| GitHub Project has the required columns and fields | ✅ PM-confirmed · ⚠️ not agent-verified | Columns: Backlog, Ready, In progress, Review, Blocked, Done. Fields: Work type, Story quality, Risk area, Owner. | PM (the agent's token lacks `read:project`) |
+| GitHub Project has the required columns and fields | ✅ Verified | Project #2 `User Stories Workshop`. Columns: Backlog, Ready, In Progress, Review, Blocked, Done. Fields: Work Type, Story Quality, Risk Area, Assignees. Contains #1–#10, and every field value matches `story-backlog.md` (PA-07 Ready, PA-08 Blocked, the rest Backlog). | Agent (`gh project field-list` / `item-list`), after the row 13 fix |
 | At least eight issues exist | ✅ 10 issues | #1–#10 (`[PA-01]`–`[PA-10]`), all open, no duplicates | Agent (`gh issue list`) |
 | Key stories have testable acceptance criteria | ✅ All 10 stories | 47 numbered criteria in `acceptance-criteria.md` plus cross-cutting X-1 to X-3; every issue body contains its criteria | Agent |
 | Epics and dependencies are mapped | ✅ | `epic-map.md`: 4 epics mapped to scenario constraints, a dependency diagram, and scope boundaries | Agent |
 | Ready/Done agreements and AI behavior checks are documented | ✅ | `ready-done-agreements.md`: DoR R-1 to R-8, DoD D-1 to D-6, AI checks AI-1 to AI-6, and a readiness snapshot | Agent |
-| Human-versus-agent decisions are recorded | ✅ | This log: rows 1–12, plus the rejected customer-facing disclaimer suggestion (row 6) | Agent |
+| Human-versus-agent decisions are recorded | ✅ | This log: rows 1–13, plus the rejected customer-facing disclaimer suggestion (row 6) | Agent |
 
 **Files created:** `story-backlog.md`, `acceptance-criteria.md`, `epic-map.md`,
 `ready-done-agreements.md`, `ai-collaboration-log.md`, `github-issue-plan.md`,
@@ -71,5 +72,6 @@ path are undefined) and PA-08 (blocked on Legal). The proposed week-by-week
 sequence hasn't been reviewed by the PM yet.
 
 **Deferred until human approval:** every GitHub write (issues were created only
-after "approve"). The agent didn't change project items; the PM did.
+after "approve"). The PM set up the project items. The agent corrected their
+field values only after the PM approved option 1 (row 13).
 
